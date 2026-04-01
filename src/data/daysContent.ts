@@ -13,105 +13,115 @@ export interface DayContent {
 }
 
 export const daysContent: DayContent[] = [
+
   {
     day: 20,
     emoji: "🌟",
     title: "The Beginning",
     steps: [
-      { type: "tease", text: "okay… before this even starts" },
-      { type: "hold", text: "don’t overthink this okay… just stay here for a second… I’m not trying to prove anything… I just want you to see something you usually ignore" },
+      { type: "tease", text: "okay… wait" },
+      { type: "hold", text: "don’t overthink this… just stay here for a second… I’m not trying to prove anything… I just want you to see something you always miss" },
       { type: "reveal", text: "you… through my eyes" },
-      { type: "bonus", text: "if this made your heart pause even a little, just wait for tomorrow… I’m only warming up, and I promise the next one will make you blush harder." },
+      { type: "bonus", text: "and if that felt even a little real… just wait… tomorrow I’m starting properly" },
     ],
   },
+
   {
     day: 19,
     emoji: "👀",
     title: "When You're Not Trying",
     steps: [
-      { type: "tease", text: "this one is actually very simple" },
-      { type: "hold", text: "you know when you’re not trying to look good… not fixing anything… just being normal… yeah that version" },
+      { type: "tease", text: "this one is simple" },
+      { type: "hold", text: "when you’re not trying… not fixing anything… just being normal… that version of you" },
       { type: "reveal", text: "that’s when you look your best" },
-      { type: "bonus", text: "tomorrow I’m saying the thing I usually keep to myself… so be ready, because your savage smile is about to get officially exposed." },
+      { type: "bonus", text: "and no… don’t argue… I’ve seen it too many times… tomorrow I’m exposing you a little" },
     ],
   },
+
   {
     day: 18,
     emoji: "😂",
     title: "Your Savage Side",
     steps: [
-      { type: "tease", text: "okay I might get in trouble for this" },
-      { type: "hold", text: "you judge people like it’s your hidden talent… your face says everything before you even speak" },
+      { type: "tease", text: "okay I might regret this" },
+      { type: "hold", text: "you judge people like it’s your hidden skill… your expressions alone can finish someone" },
       { type: "reveal", text: "and it’s actually scary sometimes" },
-      { type: "bonus", text: "and somehow I still adore that side of you… tomorrow gets deeper, softer, and dangerously close to your heart." },
+      { type: "bonus", text: "but yeah… I still enjoy it… way more than I should… tomorrow gets serious" },
     ],
   },
+
   {
     day: 17,
     emoji: "🧠",
     title: "Your Overthinking",
     steps: [
-      { type: "tease", text: "this one… I don’t like about you" },
-      { type: "hold", text: "you overthink things that aren’t even real… and then sit there convincing yourself they are" },
+      { type: "tease", text: "this one… I don’t like" },
+      { type: "hold", text: "you overthink things that don’t even exist… and then convince yourself they do" },
       { type: "reveal", text: "and it just messes with you for no reason" },
-      { type: "bonus", text: "so tomorrow I’m stealing that doubt from your hands and replacing it with truth… the kind that feels like a forehead kiss at midnight." },
+      { type: "bonus", text: "if you saw yourself properly… you wouldn’t doubt like this… tomorrow I’m reminding you who you actually are" },
     ],
   },
+
   {
     day: 16,
     emoji: "💪",
     title: "Your Discipline",
     steps: [
-      { type: "tease", text: "okay this one… listen properly" },
-      { type: "hold", text: "people see your results… but I’ve seen the days you didn’t feel like doing anything… and still did it" },
-      { type: "reveal", text: "that’s not normal… that’s discipline" },
-      { type: "bonus", text: "tomorrow I’m talking about the fire in you that you pretend is nothing… and yes, I’m going to be extra dramatic about it." },
+      { type: "tease", text: "listen to this properly" },
+      { type: "hold", text: "people only see your results… but I’ve seen the days you didn’t feel like doing anything… and still did it" },
+      { type: "reveal", text: "that’s discipline" },
+      { type: "bonus", text: "and yeah… that’s rare… tomorrow I’m saying something you’ll deny" },
     ],
   },
+
   {
     day: 15,
     emoji: "🎯",
     title: "You As a Shooter",
     steps: [
-      { type: "tease", text: "you’re definitely going to argue here" },
-      { type: "hold", text: "you didn’t ‘almost make it’… you reached places most people can’t even imagine… and still kept going" },
-      { type: "reveal", text: "that says a lot about you" },
-      { type: "bonus", text: "tomorrow I’m not praising your talent… I’m talking about your face, your vibe, and why you make eye contact feel illegal." },
+      { type: "tease", text: "you’re going to argue here" },
+      { type: "hold", text: "you didn’t almost make it… you reached places most people can’t even imagine… and still kept going" },
+      { type: "reveal", text: "that says everything about you" },
+      { type: "bonus", text: "and no… I’m not letting you downplay it… tomorrow I’m talking about something else… and you won’t escape that one" },
     ],
   },
+
   {
     day: 14,
     emoji: "👀",
     title: "The Way You Look",
     steps: [
-      { type: "tease", text: "okay don’t roll your eyes at this" },
+      { type: "tease", text: "okay don’t react immediately" },
       { type: "hold", text: "you think you look good sometimes… but you don’t realise how often it actually happens" },
       { type: "reveal", text: "it’s way more than you think" },
-      { type: "bonus", text: "and tomorrow I’ll tell you about the part of you that melts me the fastest… the gentle side you hide like a secret love song." },
+      { type: "bonus", text: "and yeah… I notice every time… tomorrow gets softer" },
     ],
   },
+
   {
     day: 13,
     emoji: "🌧️",
     title: "Your Soft Side",
     steps: [
       { type: "tease", text: "this side of you…" },
-      { type: "hold", text: "you don’t show it openly… but you feel things deeply… like really deeply" },
-      { type: "reveal", text: "and that softness… it’s actually beautiful" },
-      { type: "bonus", text: "tomorrow I’m going from soft to chaos again… and you already know we are cutest when we are completely unhinged together." },
+      { type: "hold", text: "you don’t show it to everyone… but you feel things deeply… more than you admit" },
+      { type: "reveal", text: "and that softness… it suits you" },
+      { type: "bonus", text: "don’t hide it too much… tomorrow I’m going back to chaos" },
     ],
   },
+
   {
     day: 12,
     emoji: "😂",
     title: "The Annoying You",
     steps: [
       { type: "tease", text: "okay I’m saying this openly" },
-      { type: "hold", text: "you are annoying sometimes… like genuinely irritating" },
+      { type: "hold", text: "you are annoying sometimes… like properly irritating" },
       { type: "reveal", text: "but still… I wouldn’t replace you" },
-      { type: "bonus", text: "tomorrow I’m dropping the teasing and talking about your heart… and I need you to read that one slowly, like you mean it." },
+      { type: "bonus", text: "so clearly you’re doing something right… tomorrow is different" },
     ],
   },
+
   {
     day: 11,
     emoji: "🫀",
@@ -120,9 +130,10 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "this one matters" },
       { type: "hold", text: "you care more than you show… you notice things even when you act like you don’t" },
       { type: "reveal", text: "that kind of heart is rare" },
-      { type: "bonus", text: "tomorrow I’m telling you about that hidden version of you that makes my chest feel warm and my brain forget every smart sentence." },
+      { type: "bonus", text: "don’t lose that… seriously… tomorrow I’m talking about something you don’t even realise" },
     ],
   },
+
   {
     day: 10,
     emoji: "👀",
@@ -131,9 +142,10 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "okay now this one" },
       { type: "hold", text: "there’s a version of you… calm… confident… and a little dangerous" },
       { type: "reveal", text: "and yeah… I notice that version a lot" },
-      { type: "bonus", text: "tomorrow is halfway and a little special… don’t skip it, because I want your full attention for what comes next." },
+      { type: "bonus", text: "probably more than you think… tomorrow gets personal" },
     ],
   },
+
   {
     day: 9,
     emoji: "🎧",
@@ -141,53 +153,58 @@ export const daysContent: DayContent[] = [
     steps: [
       { type: "tease", text: "halfway…" },
       { type: "voice" },
-      { type: "bonus", text: "tomorrow I’ll explain the why behind all this… and if you listen closely, you’ll hear my heart hidden between the lines." },
+      { type: "bonus", text: "you still don’t believe me do you… tomorrow I’ll explain why" },
     ],
   },
+
   {
     day: 8,
     emoji: "🧠",
     title: "Your Mind",
     steps: [
-      { type: "tease", text: "this one explains you perfectly" },
+      { type: "tease", text: "this explains you" },
       { type: "hold", text: "you’re not confused… you just think deeper than most people around you" },
       { type: "reveal", text: "and yeah… it makes things messy sometimes" },
-      { type: "bonus", text: "tomorrow is pure chaos and inside jokes… the dangerous kind of fun where I fall for you all over again." },
+      { type: "bonus", text: "but that’s also what makes you different… tomorrow is chaos" },
     ],
   },
+
   {
     day: 7,
     emoji: "😂",
     title: "Our Chaos",
     steps: [
-      { type: "tease", text: "we should actually be banned" },
-      { type: "hold", text: "we’ve judged way too many people for absolutely no reason" },
-      { type: "reveal", text: "and we’re definitely not stopping anytime soon" },
-      { type: "bonus", text: "tomorrow I’m pointing out something subtle you do… and once you notice it, you’ll catch me staring every single time." },
+      { type: "tease", text: "we should be banned" },
+      { type: "hold", text: "we’ve judged way too many people for no reason" },
+      { type: "reveal", text: "and we’re not stopping anytime soon" },
+      { type: "bonus", text: "and honestly… I don’t regret it… tomorrow I’m pointing something out" },
     ],
   },
+
   {
     day: 6,
     emoji: "👀",
     title: "The Way You Carry Yourself",
     steps: [
-      { type: "tease", text: "this is something I’ve noticed a lot" },
+      { type: "tease", text: "this is subtle" },
       { type: "hold", text: "you walk like you don’t care about anything… and somehow that makes people notice you more" },
       { type: "reveal", text: "including me" },
-      { type: "bonus", text: "tomorrow gets important and honest… the kind of note that lingers in your chest long after you close this." },
+      { type: "bonus", text: "yeah… that effect… tomorrow gets important" },
     ],
   },
+
   {
     day: 5,
     emoji: "🫶",
     title: "What You Mean To Me",
     steps: [
-      { type: "tease", text: "okay this one is serious" },
+      { type: "tease", text: "okay serious one" },
       { type: "hold", text: "you’ve been there for me… in ways you don’t even realise" },
       { type: "reveal", text: "and that actually means a lot to me" },
-      { type: "bonus", text: "tomorrow I’ll show you the gap between how you see yourself and how breathtaking you actually are to me." },
+      { type: "bonus", text: "probably more than I say… tomorrow hits different" },
     ],
   },
+
   {
     day: 4,
     emoji: "🧩",
@@ -196,20 +213,22 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "this one…" },
       { type: "hold", text: "what you think you are… vs what you actually are" },
       { type: "reveal", text: "the difference is crazy" },
-      { type: "bonus", text: "tomorrow I’m done being subtle and yes, I’m about to flirt shamelessly with facts and full confidence." },
+      { type: "bonus", text: "you’re way better than you think… tomorrow I’m not holding back" },
     ],
   },
+
   {
     day: 3,
     emoji: "👀",
     title: "The Attractive You",
     steps: [
-      { type: "tease", text: "yeah I’m not being subtle here" },
+      { type: "tease", text: "yeah I’m not being subtle" },
       { type: "hold", text: "you’re actually insanely attractive" },
       { type: "reveal", text: "like… it’s not even fair sometimes" },
-      { type: "bonus", text: "tomorrow is almost the finale… softer, bigger, and sweeter, like the moment before a perfect kiss in a film." },
+      { type: "bonus", text: "and no… I’m not taking that back… tomorrow is almost the end" },
     ],
   },
+
   {
     day: 2,
     emoji: "⏳",
@@ -218,9 +237,10 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "almost there…" },
       { type: "hold", text: "you’re not just turning 20… you’re becoming someone people will look up to" },
       { type: "reveal", text: "whether you realise it or not" },
-      { type: "bonus", text: "tomorrow is the final lock before your day… come with a calm heart, because I’ve saved my most honest words for then." },
+      { type: "bonus", text: "last one tomorrow… don’t miss it" },
     ],
   },
+
   {
     day: 1,
     emoji: "🔐",
@@ -228,9 +248,10 @@ export const daysContent: DayContent[] = [
     steps: [
       { type: "tease", text: "tomorrow…" },
       { type: "hold", text: "I’m not holding back… at all" },
-      { type: "bonus", text: "and when midnight opens the final page, I want you smiling… because everything was leading to that moment with you." },
+      { type: "bonus", text: "and yeah… just come with a calm mind… I mean it" },
     ],
   },
+
   {
     day: 0,
     emoji: "🎉",
@@ -244,4 +265,5 @@ export const daysContent: DayContent[] = [
       { type: "qr-line", text: "this wasn’t just a countdown… it was me showing you what you don’t see" },
     ],
   },
+
 ];
