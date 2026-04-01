@@ -3,6 +3,7 @@ import ParticleBackground from "@/components/ParticleBackground";
 import TypewriterText from "@/components/TypewriterText";
 import DayView from "@/components/DayView";
 import UnlockScreen from "@/components/UnlockScreen";
+import LoveBackground from "@/components/LoveBackground";
 import { daysContent, DayContent } from "@/data/daysContent";
 import {
   getCurrentDay,
@@ -330,6 +331,7 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background">
+      <LoveBackground />
       <ParticleBackground />
       {!started ? (
         <LandingScreen onStart={() => setStarted(true)} />
