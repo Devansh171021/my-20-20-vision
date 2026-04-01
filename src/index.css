@@ -149,3 +149,19 @@
     color: hsl(30 10% 35%);
   }
 }
+
+@layer utilities {
+  .romantic-backdrop {
+    background:
+      radial-gradient(circle at 15% 20%, hsl(350 45% 35% / 0.2), transparent 40%),
+      radial-gradient(circle at 80% 15%, hsl(40 70% 75% / 0.15), transparent 35%),
+      radial-gradient(circle at 50% 90%, hsl(340 35% 25% / 0.25), transparent 40%),
+      var(--gradient-bg);
+  }
+
+  .romantic-card {
+    background: linear-gradient(145deg, hsl(335 28% 16% / 0.72), hsl(325 30% 12% / 0.62));
+    backdrop-filter: blur(12px);
+    box-shadow: 0 24px 60px hsl(340 30% 5% / 0.55), inset 0 1px 0 hsl(40 70% 75% / 0.2);
+  }
+}
