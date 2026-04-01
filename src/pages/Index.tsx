@@ -125,11 +125,72 @@ const LandingScreen = ({ onStart }: { onStart: () => void }) => {
   );
 };
 
+const DevToggle = ({
+  currentDay,
+  onChangeDay,
+}: {
+  currentDay: DayStatus;
+  onChangeDay: (d: DayStatus) => void;
+}) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="fixed bottom-4 right-4 z-50">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-10 h-10 rounded-full bg-muted/80 text-foreground text-xs font-sans flex items-center justify-center backdrop-blur-sm border border-border hover:bg-muted"
+      >
+        🛠
+      </button>
+      {open && (
+        <div className="absolute bottom-12 right-0 bg-card/95 backdrop-blur-md border border-border rounded-lg p-3 w-64 max-h-80 overflow-y-auto shadow-lg">
+          <p className="text-xs text-cream-dim font-sans mb-2 tracking-widest uppercase">Dev: Jump to day</p>
+          <div className="grid grid-cols-5 gap-1.5 mb-2">
+            {Array.from({ length: 21 }, (_, i) => 20 - i).map((d) => (
+              <button
+                key={d}
+                onClick={() => { onChangeDay(d); setOpen(false); }}
+                className={`text-xs py-1.5 rounded font-sans transition-colors ${
+                  currentDay === d
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted/50 text-cream-dim hover:bg-muted"
+                }`}
+              >
+                {d}
+              </button>
+            ))}
+          </div>
+          <div className="flex gap-1.5">
+            <button
+              onClick={() => { onChangeDay("not-started"); setOpen(false); }}
+              className={`text-xs py-1.5 px-2 rounded font-sans flex-1 transition-colors ${
+                currentDay === "not-started" ? "bg-primary text-primary-foreground" : "bg-muted/50 text-cream-dim hover:bg-muted"
+              }`}
+            >
+              Pre-start
+            </button>
+            <button
+              onClick={() => { onChangeDay("complete"); setOpen(false); }}
+              className={`text-xs py-1.5 px-2 rounded font-sans flex-1 transition-colors ${
+                currentDay === "complete" ? "bg-primary text-primary-foreground" : "bg-muted/50 text-cream-dim hover:bg-muted"
+              }`}
+            >
+              Complete
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const MainExperience = () => {
   const [selectedDay, setSelectedDay] = useState<DayContent | null>(null);
   const [unlocking, setUnlocking] = useState<DayContent | null>(null);
+  const [devDay, setDevDay] = useState<DayStatus | null>(null);
 
-  const dayStatus: DayStatus = useMemo(() => getCurrentDay(), []);
+  const naturalDay: DayStatus = useMemo(() => getCurrentDay(), []);
+  const dayStatus = devDay !== null ? devDay : naturalDay;
 
   const dayNumber = typeof dayStatus === "number" ? dayStatus : null;
 
@@ -145,7 +206,6 @@ const MainExperience = () => {
       ? NAME_LETTERS.length
       : 0;
 
-  // The active letter index is the most recently unlocked one (only during letter phase)
   const activeLetterIndex =
     dayNumber !== null && dayNumber >= 8 ? revealedCount - 1 : null;
 
@@ -157,29 +217,35 @@ const MainExperience = () => {
 
   if (unlocking && !selectedDay) {
     return (
-      <UnlockScreen
-        day={unlocking.day}
-        letter={
-          activeLetterIndex !== null
-            ? NAME_LETTERS[activeLetterIndex]
-            : undefined
-        }
-        countdownNumber={showCountdown ? dayNumber! : undefined}
-        onComplete={() => {
-          setSelectedDay(unlocking);
-          setUnlocking(null);
-        }}
-      />
+      <>
+        <UnlockScreen
+          day={unlocking.day}
+          letter={
+            activeLetterIndex !== null
+              ? NAME_LETTERS[activeLetterIndex]
+              : undefined
+          }
+          countdownNumber={showCountdown ? dayNumber! : undefined}
+          onComplete={() => {
+            setSelectedDay(unlocking);
+            setUnlocking(null);
+          }}
+        />
+        <DevToggle currentDay={dayStatus} onChangeDay={(d) => { setDevDay(d); setUnlocking(null); setSelectedDay(null); }} />
+      </>
     );
   }
 
   if (selectedDay) {
     return (
-      <DayView
-        content={selectedDay}
-        onBack={() => setSelectedDay(null)}
-        totalDays={20}
-      />
+      <>
+        <DayView
+          content={selectedDay}
+          onBack={() => setSelectedDay(null)}
+          totalDays={20}
+        />
+        <DevToggle currentDay={dayStatus} onChangeDay={(d) => { setDevDay(d); setUnlocking(null); setSelectedDay(null); }} />
+      </>
     );
   }
 
@@ -196,6 +262,7 @@ const MainExperience = () => {
             coming soon…
           </p>
         </div>
+        <DevToggle currentDay={dayStatus} onChangeDay={(d) => { setDevDay(d); setUnlocking(null); setSelectedDay(null); }} />
       </div>
     );
   }
@@ -210,6 +277,7 @@ const MainExperience = () => {
             Happy Birthday, Priyodarshini ✦
           </p>
         </div>
+        <DevToggle currentDay={dayStatus} onChangeDay={(d) => { setDevDay(d); setUnlocking(null); setSelectedDay(null); }} />
       </div>
     );
   }
@@ -218,21 +286,17 @@ const MainExperience = () => {
   return (
     <div className="min-h-screen px-6 py-8 relative z-10 flex flex-col items-center justify-center">
       <div className="max-w-md w-full text-center">
-        {/* Header */}
         <p className="text-xs text-cream-dim font-sans tracking-[0.3em] uppercase mb-6">
           20 Days of You
         </p>
 
-        {/* Letter tiles */}
         <LetterTiles
           revealedCount={revealedCount}
           activeIndex={activeLetterIndex}
         />
 
-        {/* Countdown display for days 7-0 */}
         {showCountdown && <CountdownDisplay dayNumber={dayNumber!} />}
 
-        {/* Today's info */}
         {todayContent && (
           <div className="mt-6 space-y-4 animate-fade-in">
             <p className="text-xs text-cream-dim font-sans tracking-widest uppercase">
@@ -252,11 +316,11 @@ const MainExperience = () => {
           </div>
         )}
 
-        {/* Progress indicator */}
         <p className="mt-8 text-xs text-cream-dim/50 font-sans">
           {revealedCount} of {NAME_LETTERS.length} letters revealed
         </p>
       </div>
+      <DevToggle currentDay={dayStatus} onChangeDay={(d) => { setDevDay(d); setUnlocking(null); setSelectedDay(null); }} />
     </div>
   );
 };
