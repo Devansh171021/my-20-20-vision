@@ -3,7 +3,9 @@ import ParticleBackground from "@/components/ParticleBackground";
 import TypewriterText from "@/components/TypewriterText";
 import DayCard from "@/components/DayCard";
 import DayView from "@/components/DayView";
+import UnlockScreen from "@/components/UnlockScreen";
 import { daysContent, DayContent } from "@/data/daysContent";
+import { Progress } from "@/components/ui/progress";
 
 const LandingScreen = ({ onStart }: { onStart: () => void }) => {
   const [typingDone, setTypingDone] = useState(false);
