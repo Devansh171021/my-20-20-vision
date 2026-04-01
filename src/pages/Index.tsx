@@ -6,11 +6,60 @@ import UnlockScreen from "@/components/UnlockScreen";
 import { daysContent, DayContent } from "@/data/daysContent";
 import {
   getCurrentDay,
+  getRevealedLetterCount,
+  isCountdownPhase,
+  getCountdownText,
   NAME_LETTERS,
   DayStatus,
 } from "@/utils/dateUtils";
 
-/* ================= LANDING ================= */
+const LetterTiles = ({
+  revealedCount,
+  activeIndex,
+}: {
+  revealedCount: number;
+  activeIndex: number | null;
+}) => (
+  <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8">
+    {NAME_LETTERS.map((letter, i) => {
+      const isRevealed = i < revealedCount;
+      const isActive = i === activeIndex;
+      return (
+        <div
+          key={i}
+          className={`
+            w-9 h-12 md:w-11 md:h-14 rounded-lg flex items-center justify-center
+            font-serif text-lg md:text-xl transition-all duration-700
+            ${isRevealed
+              ? isActive
+                ? "letter-tile-active"
+                : "letter-tile"
+              : "letter-tile-locked"
+            }
+          `}
+          style={{ transitionDelay: isRevealed ? `${i * 80}ms` : "0ms" }}
+        >
+          <span className={isRevealed ? "" : "blur-sm select-none"}>
+            {letter}
+          </span>
+        </div>
+      );
+    })}
+  </div>
+);
+
+const CountdownDisplay = ({ dayNumber }: { dayNumber: number }) => (
+  <div className="flex flex-col items-center my-8 animate-fade-in">
+    <span className="font-serif text-8xl md:text-9xl text-primary">
+      {dayNumber}
+    </span>
+    <p className="font-serif text-lg text-cream-dim mt-4 italic">
+      {getCountdownText(dayNumber)}
+    </p>
+  </div>
+);
+
+/* ================== UPDATED LANDING ================== */
 
 const LandingScreen = ({ onStart }: { onStart: () => void }) => {
   const [step, setStep] = useState(0);
@@ -27,6 +76,12 @@ const LandingScreen = ({ onStart }: { onStart: () => void }) => {
     ["I’m going to prove it to you"],
   ];
 
+  const handleNext = () => {
+    if (step < lines.length - 1) {
+      setStep((s) => s + 1);
+    }
+  };
+
   const isLast = step === lines.length - 1;
 
   return (
@@ -41,8 +96,8 @@ const LandingScreen = ({ onStart }: { onStart: () => void }) => {
 
         {!isLast && (
           <button
-            onClick={() => setStep((s) => s + 1)}
-            className="text-sm italic text-muted-foreground hover:text-primary"
+            onClick={handleNext}
+            className="text-sm italic text-muted-foreground hover:text-primary transition-all duration-300"
           >
             continue…
           </button>
@@ -51,7 +106,8 @@ const LandingScreen = ({ onStart }: { onStart: () => void }) => {
         {isLast && (
           <button
             onClick={onStart}
-            className="px-10 py-4 rounded-full bg-primary text-primary-foreground btn-glow"
+            className="px-10 py-4 rounded-full font-serif text-lg bg-primary text-primary-foreground 
+              btn-glow animate-pulse-soft transition-all duration-300 hover:scale-105"
           >
             okay… start
           </button>
@@ -61,32 +117,51 @@ const LandingScreen = ({ onStart }: { onStart: () => void }) => {
   );
 };
 
-/* ================= MAIN ================= */
+/* ================== REST SAME ================== */
+
+const DevToggle = ({
+  currentDay,
+  onChangeDay,
+}: {
+  currentDay: DayStatus;
+  onChangeDay: (d: DayStatus) => void;
+}) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="fixed bottom-4 right-4 z-50">
+      <button onClick={() => setOpen(!open)}>🛠</button>
+      {open && (
+        <div>
+          {Array.from({ length: 21 }, (_, i) => 20 - i).map((d) => (
+            <button key={d} onClick={() => onChangeDay(d)}>
+              {d}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const MainExperience = () => {
   const [selectedDay, setSelectedDay] = useState<DayContent | null>(null);
   const [unlocking, setUnlocking] = useState<DayContent | null>(null);
+  const [devDay, setDevDay] = useState<DayStatus | null>(null);
 
-  const todayNumber = getCurrentDay();
-  const todayContent =
-    typeof todayNumber === "number"
-      ? daysContent.find((d) => d.day === todayNumber)
-      : null;
+  const naturalDay: DayStatus = useMemo(() => getCurrentDay(), []);
+  const dayStatus = devDay !== null ? devDay : naturalDay;
+  const dayNumber = typeof dayStatus === "number" ? dayStatus : null;
 
-  // Unlock animation screen
-  if (unlocking && !selectedDay) {
-    return (
-      <UnlockScreen
-        day={unlocking.day}
-        onComplete={() => {
-          setSelectedDay(unlocking);
-          setUnlocking(null);
-        }}
-      />
-    );
-  }
+  const todayContent = useMemo(() => {
+    if (dayNumber === null) return null;
+    return daysContent.find((d) => d.day === dayNumber) || null;
+  }, [dayNumber]);
 
-  // Day content
+  const handleOpenToday = () => {
+    if (todayContent) setUnlocking(todayContent);
+  };
+
   if (selectedDay) {
     return (
       <DayView
@@ -97,37 +172,16 @@ const MainExperience = () => {
     );
   }
 
-  // Main home screen
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center text-center px-6">
-
-      <h1 className="text-3xl text-primary text-glow mb-6">
-        20 Days of You
-      </h1>
-
+    <div className="min-h-screen flex flex-col items-center justify-center">
       {todayContent && (
-        <>
-          <p className="text-sm text-muted-foreground mb-2">
-            Day {todayContent.day}
-          </p>
-
-          <h2 className="text-2xl mb-6">
-            {todayContent.emoji} {todayContent.title}
-          </h2>
-
-          <button
-            onClick={() => setUnlocking(todayContent)}
-            className="px-10 py-4 rounded-full bg-primary text-primary-foreground btn-glow"
-          >
-            open today’s moment
-          </button>
-        </>
+        <button onClick={handleOpenToday}>
+          Open today
+        </button>
       )}
     </div>
   );
 };
-
-/* ================= ROOT ================= */
 
 const Index = () => {
   const [started, setStarted] = useState(false);
