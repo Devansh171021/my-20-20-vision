@@ -1,219 +1,234 @@
+export interface DayStep {
+  type: "tease" | "tap" | "hold" | "reveal" | "bonus" | "voice" | "photo" | "montage" | "split-view" | "final-text" | "qr-line";
+  text?: string;
+  splitLeft?: string[];
+  splitRight?: string[];
+}
+
 export interface DayContent {
   day: number;
   emoji: string;
   title: string;
-  lines: string[];
-  interaction: "tap-reveal" | "fade-sequence" | "hold-reveal" | "split-view";
-  splitLeft?: string[];
-  splitRight?: string[];
+  steps: DayStep[];
+  hasPhoto?: boolean;
+  hasVoice?: boolean;
+  hasMontage?: boolean;
 }
 
 export const daysContent: DayContent[] = [
   {
     day: 20, emoji: "🌟", title: "The Beginning",
-    interaction: "fade-sequence",
-    lines: [
-      "You're about to turn 20…",
-      "and it's actually funny… because there's still so much about you that you don't see.",
-      "Like genuinely… the only person who underestimates you sometimes is you.",
-      "So yeah… for the next 20 days…",
-      "I'm just going to show you what I see."
-    ]
+    steps: [
+      { type: "tease", text: "okay… before this starts" },
+      { type: "tap", text: "just don't overthink this whole thing" },
+      { type: "hold", text: "I'm just going to show you something you don't see enough" },
+      { type: "reveal", text: "you… through my eyes" },
+    ],
   },
   {
     day: 19, emoji: "👀", title: "When You're Not Trying",
-    interaction: "tap-reveal",
-    lines: [
-      "You know what I've noticed…",
-      "you look your best when you're not even trying.",
-      "Like when you're just being normal… not posing… not thinking… just you.",
-      "And the funniest part is…",
-      "you don't even realise it."
-    ]
+    hasPhoto: true,
+    steps: [
+      { type: "tease", text: "this one is simple" },
+      { type: "tap", text: "don't try to disagree immediately" },
+      { type: "hold", text: "you look your best when you're not even trying" },
+      { type: "reveal", text: "like when you're just being you… not thinking about anything" },
+      { type: "bonus", text: "and yeah… I notice that more than you think" },
+    ],
   },
   {
     day: 18, emoji: "😂", title: "Your Savage Side",
-    interaction: "tap-reveal",
-    lines: [
-      "You judge people like it's actually a skill.",
-      "Your expressions alone can destroy someone.",
-      "And somehow…",
-      "I still find it funny every time."
-    ]
+    steps: [
+      { type: "tease", text: "okay this one is dangerous" },
+      { type: "tap", text: "I'm exposing you a little" },
+      { type: "hold", text: "you judge people like it's a sport" },
+      { type: "reveal", text: "and your expressions alone can finish someone" },
+      { type: "bonus", text: "and somehow… I still enjoy it" },
+    ],
   },
   {
     day: 17, emoji: "🧠", title: "Your Overthinking",
-    interaction: "fade-sequence",
-    lines: [
-      "Your brain really loves creating problems that don't even exist.",
-      "And then you sit there… overthinking everything like it's real.",
-      "I'm just saying…",
-      "not every thought deserves your attention.",
-      "You're actually stronger than the things you overthink."
-    ]
+    steps: [
+      { type: "tease", text: "this one… I wish you'd fix" },
+      { type: "tap", text: "or at least reduce" },
+      { type: "hold", text: "you overthink things that don't even exist" },
+      { type: "reveal", text: "and then you sit there stressing about it like it's real" },
+      { type: "bonus", text: "you're stronger than your thoughts… just saying" },
+    ],
   },
   {
     day: 16, emoji: "💪", title: "Your Discipline",
-    interaction: "tap-reveal",
-    lines: [
-      "People only see results…",
-      "I've seen the days where you didn't feel like doing anything…",
-      "and still showed up.",
-      "That kind of consistency isn't normal.",
-      "That's what makes you different."
-    ]
+    steps: [
+      { type: "tease", text: "okay serious one" },
+      { type: "tap", text: "no jokes here" },
+      { type: "hold", text: "people only see your results" },
+      { type: "reveal", text: "I've seen the days you didn't feel like it… and still showed up" },
+      { type: "bonus", text: "that's not normal… that's discipline" },
+    ],
   },
   {
     day: 15, emoji: "🎯", title: "You As a Shooter",
-    interaction: "fade-sequence",
-    lines: [
-      "You call it 'almost'…",
-      "I see someone who just refuses to stop.",
-      "Missing by that close doesn't make you less…",
-      "it actually shows how far you've come.",
-      "You're not someone who quits.",
-      "And that matters more than anything."
-    ]
+    hasPhoto: true, hasVoice: true,
+    steps: [
+      { type: "tease", text: "you're definitely going to argue with this" },
+      { type: "tap", text: "I already know" },
+      { type: "hold", text: "you didn't 'almost make it'…" },
+      { type: "reveal", text: "you're someone who just refuses to stop" },
+      { type: "voice" },
+      { type: "bonus", text: "and honestly… that's way more impressive" },
+    ],
   },
   {
     day: 14, emoji: "👀", title: "The Way You Look",
-    interaction: "tap-reveal",
-    lines: [
-      "You're not 'sometimes pretty'…",
-      "you just don't notice when you are.",
-      "And trust me…",
-      "it's way more often than you think."
-    ]
+    steps: [
+      { type: "tease", text: "this one is about your looks" },
+      { type: "tap", text: "don't roll your eyes" },
+      { type: "hold", text: "you're not 'sometimes pretty'…" },
+      { type: "reveal", text: "you just don't notice when you are" },
+      { type: "bonus", text: "which is… most of the time" },
+    ],
   },
   {
     day: 13, emoji: "🌧️", title: "Your Soft Side",
-    interaction: "fade-sequence",
-    lines: [
-      "You act strong all the time…",
-      "but you feel things deeply…",
-      "way more than you show.",
-      "And honestly…",
-      "that's not weakness.",
-      "That's what makes you real."
-    ]
+    hasPhoto: true,
+    steps: [
+      { type: "tease", text: "this side of you…" },
+      { type: "tap", text: "you don't show it much" },
+      { type: "hold", text: "you feel things deeply" },
+      { type: "reveal", text: "way more than you let people see" },
+      { type: "bonus", text: "that's not weakness… that's you being real" },
+    ],
   },
   {
     day: 12, emoji: "😂", title: "The Annoying You",
-    interaction: "tap-reveal",
-    lines: [
-      "You're actually irritating sometimes…",
-      "like properly.",
-      "But still…",
-      "I'd pick you over anyone else."
-    ]
+    steps: [
+      { type: "tease", text: "okay I'm saying this openly" },
+      { type: "tap", text: "don't get offended" },
+      { type: "hold", text: "you're actually irritating sometimes" },
+      { type: "reveal", text: "like properly annoying" },
+      { type: "bonus", text: "still… wouldn't replace you" },
+    ],
   },
   {
     day: 11, emoji: "🫀", title: "Your Heart",
-    interaction: "fade-sequence",
-    lines: [
-      "You care more than you admit.",
-      "You act chill…",
-      "but you notice everything.",
-      "And that kind of heart…",
-      "is rare."
-    ]
+    steps: [
+      { type: "tease", text: "this one matters" },
+      { type: "tap", text: "so read properly" },
+      { type: "hold", text: "you care more than you admit" },
+      { type: "reveal", text: "you notice things… even when you act like you don't" },
+      { type: "bonus", text: "that kind of heart is rare" },
+    ],
   },
   {
     day: 10, emoji: "👀", title: "The Version You Hide",
-    interaction: "tap-reveal",
-    lines: [
-      "There's a version of you…",
-      "that's calm…",
-      "confident…",
-      "and a little dangerous.",
-      "And honestly…",
-      "I like that version the most."
-    ]
+    hasPhoto: true,
+    steps: [
+      { type: "tease", text: "okay now this one…" },
+      { type: "tap", text: "no arguing allowed" },
+      { type: "hold", text: "there's a version of you…" },
+      { type: "reveal", text: "that's calm… confident… and lowkey dangerous" },
+      { type: "bonus", text: "yeah… I see that version a lot" },
+    ],
   },
   {
     day: 9, emoji: "🎧", title: "Voice Day",
-    interaction: "fade-sequence",
-    lines: [
-      "You don't give yourself enough credit…",
-      "and it's actually annoying at this point."
-    ]
+    hasVoice: true,
+    steps: [
+      { type: "tease", text: "halfway…" },
+      { type: "tap", text: "you still don't believe me do you" },
+      { type: "voice" },
+      { type: "bonus", text: "exactly" },
+    ],
   },
   {
     day: 8, emoji: "🧠", title: "Your Mind",
-    interaction: "tap-reveal",
-    lines: [
-      "You're not confused…",
-      "you just think deeper than most people.",
-      "And yeah…",
-      "that gets messy sometimes.",
-      "But it's also what makes you different."
-    ]
+    steps: [
+      { type: "tease", text: "this one explains you" },
+      { type: "tap", text: "pretty accurately" },
+      { type: "hold", text: "you're not confused…" },
+      { type: "reveal", text: "you just think deeper than most people" },
+      { type: "bonus", text: "that's why it gets messy sometimes" },
+    ],
   },
   {
     day: 7, emoji: "😂", title: "Our Chaos",
-    interaction: "fade-sequence",
-    lines: [
-      "We've judged so many people…",
-      "I'm pretty sure we shouldn't be allowed to do that anymore."
-    ]
+    steps: [
+      { type: "tease", text: "we should actually be banned" },
+      { type: "tap", text: "like genuinely" },
+      { type: "hold", text: "we've judged too many people" },
+      { type: "reveal", text: "for absolutely no reason" },
+      { type: "bonus", text: "and we'll probably still do it" },
+    ],
   },
   {
     day: 6, emoji: "👀", title: "The Way You Carry Yourself",
-    interaction: "tap-reveal",
-    lines: [
-      "You walk like you don't care…",
-      "and somehow…",
-      "that makes people notice you even more."
-    ]
+    steps: [
+      { type: "tease", text: "this one is subtle" },
+      { type: "tap", text: "but I've noticed it a lot" },
+      { type: "hold", text: "you walk like you don't care" },
+      { type: "reveal", text: "and somehow that makes people notice you more" },
+      { type: "bonus", text: "including me" },
+    ],
   },
   {
     day: 5, emoji: "🫶", title: "What You Mean To Me",
-    interaction: "fade-sequence",
-    lines: [
-      "You've been there for me…",
-      "in ways you don't even realise.",
-      "And I don't think I say that enough."
-    ]
+    hasPhoto: true,
+    steps: [
+      { type: "tease", text: "okay… serious again" },
+      { type: "tap", text: "no jokes this time" },
+      { type: "hold", text: "you've been there for me…" },
+      { type: "reveal", text: "in ways you don't even realise" },
+      { type: "bonus", text: "and yeah… that matters a lot" },
+    ],
   },
   {
     day: 4, emoji: "🧩", title: "You vs Your Thoughts",
-    interaction: "split-view",
-    lines: [],
-    splitLeft: ["Not good enough", "Too emotional", "Behind everyone", "Overthinking everything", "Not strong enough"],
-    splitRight: ["More than enough", "Deeply feeling", "On your own path", "Thoughtful & aware", "Quietly powerful"],
+    steps: [
+      { type: "tease", text: "this one hits different" },
+      { type: "tap", text: "just look at both sides" },
+      { type: "split-view", splitLeft: ["Not good enough", "Too emotional", "Behind everyone", "Overthinking everything", "Not strong enough"], splitRight: ["More than enough", "Deeply feeling", "On your own path", "Thoughtful & aware", "Quietly powerful"] },
+      { type: "bonus", text: "the difference is crazy" },
+    ],
   },
   {
     day: 3, emoji: "👀", title: "The Attractive You",
-    interaction: "tap-reveal",
-    lines: [
-      "You're actually dangerously attractive…",
-      "especially when you're just being yourself."
-    ]
+    hasPhoto: true,
+    steps: [
+      { type: "tease", text: "yeah I'm not being subtle here" },
+      { type: "tap", text: "at all" },
+      { type: "hold", text: "you're actually insanely attractive" },
+      { type: "reveal", text: "like… it's not even fair sometimes" },
+      { type: "bonus", text: "and no… I'm not taking that back" },
+    ],
   },
   {
     day: 2, emoji: "⏳", title: "Almost 20",
-    interaction: "fade-sequence",
-    lines: [
-      "You're not just turning 20…",
-      "you're becoming someone people will look up to."
-    ]
+    steps: [
+      { type: "tease", text: "almost there…" },
+      { type: "tap", text: "one more push" },
+      { type: "hold", text: "you're not just turning 20" },
+      { type: "reveal", text: "you're becoming someone people will look up to" },
+      { type: "bonus", text: "whether you realise it or not" },
+    ],
   },
   {
     day: 1, emoji: "🔐", title: "Tomorrow",
-    interaction: "tap-reveal",
-    lines: [
-      "Tomorrow…",
-      "I'm not holding back."
-    ]
+    steps: [
+      { type: "tease", text: "tomorrow…" },
+      { type: "tap", text: "I'm not holding back" },
+    ],
   },
   {
     day: 0, emoji: "🎉", title: "Happy Birthday",
-    interaction: "fade-sequence",
-    lines: [
-      "You don't see yourself clearly yet…",
-      "but I do.",
-      "And that's exactly why…",
-      "you'll always be someone special to me."
-    ]
+    hasVoice: true, hasMontage: true,
+    steps: [
+      { type: "tease", text: "20 days…" },
+      { type: "tap", text: "you still don't fully see it do you" },
+      { type: "montage" },
+      { type: "voice" },
+      { type: "final-text", text: "you don't see yourself clearly…\nbut I do" },
+      { type: "reveal", text: "and yeah…\nthat's exactly why you mean so much to me" },
+      { type: "qr-line", text: "this wasn't just a countdown…\nit was me… showing you what you don't see" },
+    ],
   },
 ];
