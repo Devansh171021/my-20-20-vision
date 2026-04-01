@@ -3,7 +3,9 @@ import ParticleBackground from "@/components/ParticleBackground";
 import TypewriterText from "@/components/TypewriterText";
 import DayCard from "@/components/DayCard";
 import DayView from "@/components/DayView";
+import UnlockScreen from "@/components/UnlockScreen";
 import { daysContent, DayContent } from "@/data/daysContent";
+import { Progress } from "@/components/ui/progress";
 
 const LandingScreen = ({ onStart }: { onStart: () => void }) => {
   const [typingDone, setTypingDone] = useState(false);
@@ -59,25 +61,48 @@ const LandingScreen = ({ onStart }: { onStart: () => void }) => {
 
 const MainExperience = () => {
   const [selectedDay, setSelectedDay] = useState<DayContent | null>(null);
+  const [unlocking, setUnlocking] = useState<DayContent | null>(null);
 
-  // For demo purposes, unlock all days. In production, use date-based unlocking.
-  const unlockedDays = 21; // all days unlocked for now
+  const unlockedDays = 21;
+  const completedDays = 0;
+  const progressPercent = (completedDays / daysContent.length) * 100;
+
+  const handleDayClick = (day: DayContent) => {
+    setUnlocking(day);
+  };
+
+  if (unlocking && !selectedDay) {
+    return (
+      <UnlockScreen
+        day={unlocking.day}
+        onComplete={() => {
+          setSelectedDay(unlocking);
+          setUnlocking(null);
+        }}
+      />
+    );
+  }
 
   if (selectedDay) {
-    return <DayView content={selectedDay} onBack={() => setSelectedDay(null)} />;
+    return <DayView content={selectedDay} onBack={() => setSelectedDay(null)} totalDays={20} />;
   }
 
   return (
     <div className="min-h-screen px-6 py-8 relative z-10">
       <div className="max-w-lg mx-auto">
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-6">
           <p className="text-xs text-cream-dim font-sans tracking-[0.3em] uppercase mb-2">
             20 Days of You
           </p>
           <h1 className="font-serif text-2xl md:text-3xl text-primary text-glow">
             The Way I See You
           </h1>
+        </div>
+
+        {/* Progress */}
+        <div className="mb-8 max-w-xs mx-auto">
+          <Progress value={progressPercent} className="h-0.5 bg-muted/20" />
         </div>
 
         {/* Day cards */}
@@ -88,7 +113,7 @@ const MainExperience = () => {
               content={day}
               isUnlocked={index < unlockedDays}
               isToday={index === 0}
-              onClick={() => setSelectedDay(day)}
+              onClick={() => handleDayClick(day)}
             />
           ))}
         </div>
