@@ -9,18 +9,6 @@ interface DayViewProps {
   totalDays: number;
 }
 
-const TIMINGS: Record<string, number> = {
-  tease: 2000,
-  reveal: 2400,
-  bonus: 2000,
-  voice: 4000,
-  photo: 2500,
-  montage: 4000,
-  "final-text": 3000,
-  "qr-line": 4000,
-  "split-view": 5000,
-};
-
 const SplitView = ({ left, right }: { left: string[]; right: string[] }) => {
   const [revealed, setRevealed] = useState(false);
 
@@ -46,8 +34,7 @@ const SplitView = ({ left, right }: { left: string[]; right: string[] }) => {
         </div>
         <div className="text-center">
           <h3 className="font-serif text-xs uppercase tracking-widest text-primary mb-6">
-            What you are
-          </h3>
+@@ -51,62 +39,50 @@ const SplitView = ({ left, right }: { left: string[]; right: string[] }) => {
           <div className="space-y-4">
             {right.map((item, i) => (
               <p
@@ -73,18 +60,6 @@ const StepRenderer = ({ step, onNext }: { step: DayStep; onNext: () => void }) =
   const [holdProgress, setHoldProgress] = useState(0);
   const holdTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const holdCompleteRef = useRef(false);
-  const autoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  // Auto-progress for non-hold steps
-  useEffect(() => {
-    if (step.type === "hold") return;
-    const delay = TIMINGS[step.type] || 2000;
-    autoTimerRef.current = setTimeout(onNext, delay);
-    return () => {
-      if (autoTimerRef.current) clearTimeout(autoTimerRef.current);
-    };
-  }, [step.type, onNext]);
-
   const startHold = useCallback(() => {
     holdCompleteRef.current = false;
     setHoldProgress(0);
@@ -110,142 +85,7 @@ const StepRenderer = ({ step, onNext }: { step: DayStep; onNext: () => void }) =
 
   // When hold reaches 100%, auto-advance after a beat
   useEffect(() => {
-    if (holdProgress >= 100 && holdCompleteRef.current) {
-      const t = setTimeout(onNext, 500);
-      return () => clearTimeout(t);
-    }
-  }, [holdProgress, onNext]);
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (holdTimerRef.current) clearInterval(holdTimerRef.current);
-    };
-  }, []);
-
-  if (step.type === "tease") {
-    return (
-      <div className="animate-fade-in text-center">
-        <p className="font-serif text-lg md:text-xl leading-relaxed text-foreground/80 whitespace-pre-line">
-          {step.text}
-        </p>
-      </div>
-    );
-  }
-
-  if (step.type === "hold") {
-    return (
-      <div className="animate-fade-in text-center space-y-8">
-        <p
-          className="font-serif text-xl md:text-2xl leading-relaxed text-foreground/90 whitespace-pre-line transition-all duration-500"
-          style={{
-            textShadow: holdProgress > 50 ? `0 0 ${holdProgress / 4}px hsl(40 60% 69% / 0.3)` : "none",
-          }}
-        >
-          {step.text}
-        </p>
-        <div className="space-y-4">
-          <button
-            onMouseDown={startHold}
-            onMouseUp={endHold}
-            onMouseLeave={endHold}
-            onTouchStart={(e) => { e.preventDefault(); startHold(); }}
-            onTouchEnd={endHold}
-            className={`px-10 py-4 rounded-full font-serif text-base transition-all duration-300 select-none
-              ${holdProgress > 0
-                ? "glass-card-glow text-primary scale-[0.97]"
-                : "glass-card text-foreground/70 hover:text-foreground"
-              }`}
-            style={{
-              boxShadow: holdProgress > 0
-                ? `0 0 ${20 + holdProgress / 2}px hsl(40 60% 69% / ${0.1 + holdProgress / 300})`
-                : undefined,
-            }}
-          >
-            {holdProgress >= 100 ? "✦" : holdProgress > 0 ? "keep holding…" : "hold this…"}
-          </button>
-          <div className="w-48 mx-auto">
-            <Progress value={holdProgress} className="h-0.5 bg-muted/20" />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (step.type === "reveal") {
-    return (
-      <div className="animate-fade-in text-center">
-        <p className="font-serif text-2xl md:text-3xl leading-relaxed text-primary text-glow whitespace-pre-line">
-          {step.text}
-        </p>
-      </div>
-    );
-  }
-
-  if (step.type === "bonus") {
-    return (
-      <div className="animate-fade-in text-center">
-        <p className="font-serif text-base md:text-lg leading-relaxed text-muted-foreground italic whitespace-pre-line">
-          {step.text}
-        </p>
-      </div>
-    );
-  }
-
-  if (step.type === "voice") {
-    return (
-      <div className="animate-fade-in text-center space-y-4">
-        <div className="w-20 h-20 mx-auto rounded-full glass-card-glow flex items-center justify-center animate-pulse-soft">
-          <span className="text-3xl">🎧</span>
-        </div>
-        <p className="font-serif text-sm text-muted-foreground italic">
-          yeah… this one
-        </p>
-        <p className="text-xs text-muted-foreground/50 font-sans">voice note (coming soon)</p>
-      </div>
-    );
-  }
-
-  if (step.type === "photo") {
-    return (
-      <div className="animate-fade-in text-center space-y-4">
-        <div className="w-56 h-56 mx-auto rounded-2xl glass-card-glow flex items-center justify-center overflow-hidden">
-          <span className="text-5xl">📸</span>
-        </div>
-        <p className="font-serif text-sm text-muted-foreground italic">
-          don't lie… you know this
-        </p>
-        <p className="text-xs text-muted-foreground/50 font-sans">photo (add yours)</p>
-      </div>
-    );
-  }
-
-  if (step.type === "montage") {
-    return (
-      <div className="animate-fade-in text-center space-y-4">
-        <div className="w-72 h-44 mx-auto rounded-2xl glass-card-glow flex items-center justify-center overflow-hidden animate-pulse-soft">
-          <span className="text-5xl">🎬</span>
-        </div>
-        <p className="font-serif text-sm text-muted-foreground italic">
-          every moment… all of it
-        </p>
-        <p className="text-xs text-muted-foreground/50 font-sans">montage (coming soon)</p>
-      </div>
-    );
-  }
-
-  if (step.type === "split-view") {
-    return (
-      <div className="animate-fade-in">
-        <SplitView left={step.splitLeft || []} right={step.splitRight || []} />
-      </div>
-    );
-  }
-
-  if (step.type === "final-text") {
-    return (
-      <div className="animate-fade-in text-center">
-        <p className="font-serif text-2xl md:text-3xl leading-relaxed text-primary text-glow whitespace-pre-line">
+@@ -249,88 +225,101 @@ const StepRenderer = ({ step, onNext }: { step: DayStep; onNext: () => void }) =
           {step.text}
         </p>
       </div>
@@ -271,6 +111,7 @@ const DayView = ({ content, onBack, totalDays }: DayViewProps) => {
 
   const currentStep = content.steps[currentStepIndex];
   const progressPercent = ((currentStepIndex + 1) / content.steps.length) * 100;
+  const isHoldStep = currentStep?.type === "hold";
 
   const handleNext = useCallback(() => {
     setCurrentStepIndex((i) => {
@@ -281,7 +122,7 @@ const DayView = ({ content, onBack, totalDays }: DayViewProps) => {
   }, [content.steps.length]);
 
   return (
-    <div className="min-h-screen flex flex-col px-6 py-6 relative z-10 vignette">
+    <div className="min-h-screen flex flex-col px-6 py-6 relative z-10 romantic-backdrop">
       {/* Top bar */}
       <div className="max-w-lg mx-auto w-full mb-2">
         <div className="flex items-center justify-between mb-3">
@@ -298,7 +139,7 @@ const DayView = ({ content, onBack, totalDays }: DayViewProps) => {
         <Progress value={progressPercent} className="h-0.5 bg-muted/20" />
       </div>
 
-      <div className="flex-1 flex flex-col justify-center max-w-lg mx-auto w-full">
+      <div className="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full">
         {/* Day label */}
         <div className="mb-2 text-muted-foreground text-sm font-sans tracking-widest uppercase text-center">
           Day {content.day}
@@ -308,9 +149,21 @@ const DayView = ({ content, onBack, totalDays }: DayViewProps) => {
         </h1>
 
         {/* Step content */}
-        <div className="text-foreground/90 min-h-[250px] flex flex-col justify-center">
+        <div className="text-foreground/90 min-h-[280px] flex flex-col justify-center romantic-card p-6 md:p-10 rounded-3xl border border-primary/20">
           {!isComplete && currentStep && (
-            <StepRenderer key={currentStepIndex} step={currentStep} onNext={handleNext} />
+            <>
+              <StepRenderer key={currentStepIndex} step={currentStep} onNext={handleNext} />
+              {!isHoldStep && (
+                <div className="mt-8 text-center">
+                  <button
+                    onClick={handleNext}
+                    className="px-8 py-3 rounded-full bg-primary/90 text-primary-foreground font-serif text-sm md:text-base tracking-wide shadow-lg shadow-primary/25 hover:bg-primary transition-all duration-300"
+                  >
+                    next ♥
+                  </button>
+                </div>
+              )}
+            </>
           )}
           {isComplete && (
             <div className="animate-fade-in text-center space-y-8">
