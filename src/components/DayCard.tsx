@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Lock } from "lucide-react";
 import { DayContent } from "@/data/daysContent";
 
@@ -5,10 +6,11 @@ interface DayCardProps {
   content: DayContent;
   isUnlocked: boolean;
   isToday: boolean;
-  onClick: () => void;
 }
 
-const DayCard = ({ content, isUnlocked, isToday, onClick }: DayCardProps) => {
+const DayCard = ({ content, isUnlocked, isToday }: DayCardProps) => {
+  const [revealed, setRevealed] = useState(false);
+
   if (!isUnlocked) {
     return (
       <div className="glass-card rounded-xl p-5 opacity-40 select-none">
@@ -16,8 +18,12 @@ const DayCard = ({ content, isUnlocked, isToday, onClick }: DayCardProps) => {
           <div className="flex items-center gap-3">
             <span className="text-lg blur-sm">{content.emoji}</span>
             <div>
-              <p className="text-xs text-cream-dim font-sans tracking-widest uppercase">Day {content.day}</p>
-              <p className="font-serif text-foreground/40 blur-sm text-sm">{content.title}</p>
+              <p className="text-xs text-cream-dim uppercase tracking-widest">
+                Day {content.day}
+              </p>
+              <p className="font-serif text-foreground/40 blur-sm text-sm">
+                {content.title}
+              </p>
             </div>
           </div>
           <Lock className="w-4 h-4 text-cream-dim/50" />
@@ -27,27 +33,39 @@ const DayCard = ({ content, isUnlocked, isToday, onClick }: DayCardProps) => {
   }
 
   return (
-    <button
-      onClick={onClick}
-      className={`w-full text-left rounded-xl p-5 transition-all duration-500 ${
+    <div
+      className={`relative overflow-hidden rounded-xl p-5 transition-all duration-700 ${
         isToday
-          ? "glass-card-glow animate-scale-in"
-          : "glass-card hover:border-primary/20"
+          ? "glass-card-glow shadow-[0_0_40px_rgba(230,192,123,0.2)]"
+          : "glass-card"
       }`}
+      onMouseDown={() => setRevealed(true)}
+      onTouchStart={() => setRevealed(true)}
     >
       <div className="flex items-center gap-3">
         <span className="text-xl">{content.emoji}</span>
         <div>
-          <p className="text-xs text-cream-dim font-sans tracking-widest uppercase">Day {content.day}</p>
-          <p className={`font-serif text-sm ${isToday ? "text-primary text-glow-soft" : "text-foreground/80"}`}>
+          <p className="text-xs text-cream-dim uppercase tracking-widest">
+            Day {content.day}
+          </p>
+          <p className="font-serif text-sm text-primary/90">
             {content.title}
           </p>
         </div>
       </div>
-      {isToday && (
-        <p className="mt-3 text-xs text-cream-dim font-sans">tap to open →</p>
+
+      {!revealed && isToday && (
+        <p className="mt-3 text-xs text-cream-dim animate-pulse">
+          hold this…
+        </p>
       )}
-    </button>
+
+      {revealed && (
+        <p className="mt-4 text-sm text-foreground/90 animate-fade-in">
+          open →
+        </p>
+      )}
+    </div>
   );
 };
 
