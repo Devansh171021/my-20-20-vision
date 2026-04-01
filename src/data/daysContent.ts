@@ -13,7 +13,6 @@ export interface DayContent {
 }
 
 export const daysContent: DayContent[] = [
-
   {
     day: 20,
     emoji: "🌟",
@@ -22,10 +21,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "okay… before this even starts" },
       { type: "hold", text: "don’t overthink this okay… just stay here for a second… I’m not trying to prove anything… I just want you to see something you usually ignore" },
       { type: "reveal", text: "you… through my eyes" },
-      { type: "bonus", text: "and trust me… this is just the start… tomorrow gets interesting" },
+      { type: "bonus", text: "if this made your heart pause even a little, just wait for tomorrow… I’m only warming up, and I promise the next one will make you blush harder." },
     ],
   },
-
   {
     day: 19,
     emoji: "👀",
@@ -34,10 +32,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "this one is actually very simple" },
       { type: "hold", text: "you know when you’re not trying to look good… not fixing anything… just being normal… yeah that version" },
       { type: "reveal", text: "that’s when you look your best" },
-      { type: "bonus", text: "and don’t argue… I’ve seen it way too many times… tomorrow I’m exposing you a little" },
+      { type: "bonus", text: "tomorrow I’m saying the thing I usually keep to myself… so be ready, because your savage smile is about to get officially exposed." },
     ],
   },
-
   {
     day: 18,
     emoji: "😂",
@@ -46,10 +43,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "okay I might get in trouble for this" },
       { type: "hold", text: "you judge people like it’s your hidden talent… your face says everything before you even speak" },
       { type: "reveal", text: "and it’s actually scary sometimes" },
-      { type: "bonus", text: "but yeah… I still enjoy it… probably more than I should… tomorrow is a serious one" },
+      { type: "bonus", text: "and somehow I still adore that side of you… tomorrow gets deeper, softer, and dangerously close to your heart." },
     ],
   },
-
   {
     day: 17,
     emoji: "🧠",
@@ -58,10 +54,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "this one… I don’t like about you" },
       { type: "hold", text: "you overthink things that aren’t even real… and then sit there convincing yourself they are" },
       { type: "reveal", text: "and it just messes with you for no reason" },
-      { type: "bonus", text: "if you saw yourself the way I do… you wouldn’t doubt this much… tomorrow I’m reminding you who you actually are" },
+      { type: "bonus", text: "so tomorrow I’m stealing that doubt from your hands and replacing it with truth… the kind that feels like a forehead kiss at midnight." },
     ],
   },
-
   {
     day: 16,
     emoji: "💪",
@@ -70,10 +65,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "okay this one… listen properly" },
       { type: "hold", text: "people see your results… but I’ve seen the days you didn’t feel like doing anything… and still did it" },
       { type: "reveal", text: "that’s not normal… that’s discipline" },
-      { type: "bonus", text: "and yeah… that’s something not everyone has… tomorrow I’m talking about something you’ll deny" },
+      { type: "bonus", text: "tomorrow I’m talking about the fire in you that you pretend is nothing… and yes, I’m going to be extra dramatic about it." },
     ],
   },
-
   {
     day: 15,
     emoji: "🎯",
@@ -82,10 +76,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "you’re definitely going to argue here" },
       { type: "hold", text: "you didn’t ‘almost make it’… you reached places most people can’t even imagine… and still kept going" },
       { type: "reveal", text: "that says a lot about you" },
-      { type: "bonus", text: "and no… I’m not letting you downplay it… tomorrow I’m saying something you won’t accept easily" },
+      { type: "bonus", text: "tomorrow I’m not praising your talent… I’m talking about your face, your vibe, and why you make eye contact feel illegal." },
     ],
   },
-
   {
     day: 14,
     emoji: "👀",
@@ -94,10 +87,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "okay don’t roll your eyes at this" },
       { type: "hold", text: "you think you look good sometimes… but you don’t realise how often it actually happens" },
       { type: "reveal", text: "it’s way more than you think" },
-      { type: "bonus", text: "and yeah… I notice every time… tomorrow gets a little softer" },
+      { type: "bonus", text: "and tomorrow I’ll tell you about the part of you that melts me the fastest… the gentle side you hide like a secret love song." },
     ],
   },
-
   {
     day: 13,
     emoji: "🌧️",
@@ -106,10 +98,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "this side of you…" },
       { type: "hold", text: "you don’t show it openly… but you feel things deeply… like really deeply" },
       { type: "reveal", text: "and that softness… it’s actually beautiful" },
-      { type: "bonus", text: "don’t hide it too much… tomorrow I’m calling you out again" },
+      { type: "bonus", text: "tomorrow I’m going from soft to chaos again… and you already know we are cutest when we are completely unhinged together." },
     ],
   },
-
   {
     day: 12,
     emoji: "😂",
@@ -118,10 +109,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "okay I’m saying this openly" },
       { type: "hold", text: "you are annoying sometimes… like genuinely irritating" },
       { type: "reveal", text: "but still… I wouldn’t replace you" },
-      { type: "bonus", text: "so clearly you’re doing something right… tomorrow is different" },
+      { type: "bonus", text: "tomorrow I’m dropping the teasing and talking about your heart… and I need you to read that one slowly, like you mean it." },
     ],
   },
-
   {
     day: 11,
     emoji: "🫀",
@@ -130,10 +120,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "this one matters" },
       { type: "hold", text: "you care more than you show… you notice things even when you act like you don’t" },
       { type: "reveal", text: "that kind of heart is rare" },
-      { type: "bonus", text: "don’t lose that… seriously… tomorrow I’m talking about something you don’t even realise" },
+      { type: "bonus", text: "tomorrow I’m telling you about that hidden version of you that makes my chest feel warm and my brain forget every smart sentence." },
     ],
   },
-
   {
     day: 10,
     emoji: "👀",
@@ -142,10 +131,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "okay now this one" },
       { type: "hold", text: "there’s a version of you… calm… confident… and a little dangerous" },
       { type: "reveal", text: "and yeah… I notice that version a lot" },
-      { type: "bonus", text: "probably more than you think… tomorrow gets personal" },
+      { type: "bonus", text: "tomorrow is halfway and a little special… don’t skip it, because I want your full attention for what comes next." },
     ],
   },
-
   {
     day: 9,
     emoji: "🎧",
@@ -153,10 +141,9 @@ export const daysContent: DayContent[] = [
     steps: [
       { type: "tease", text: "halfway…" },
       { type: "voice" },
-      { type: "bonus", text: "you still don’t believe me do you… tomorrow I’ll explain why" },
+      { type: "bonus", text: "tomorrow I’ll explain the why behind all this… and if you listen closely, you’ll hear my heart hidden between the lines." },
     ],
   },
-
   {
     day: 8,
     emoji: "🧠",
@@ -165,10 +152,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "this one explains you perfectly" },
       { type: "hold", text: "you’re not confused… you just think deeper than most people around you" },
       { type: "reveal", text: "and yeah… it makes things messy sometimes" },
-      { type: "bonus", text: "but that’s also what makes you different… tomorrow is chaos" },
+      { type: "bonus", text: "tomorrow is pure chaos and inside jokes… the dangerous kind of fun where I fall for you all over again." },
     ],
   },
-
   {
     day: 7,
     emoji: "😂",
@@ -177,10 +163,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "we should actually be banned" },
       { type: "hold", text: "we’ve judged way too many people for absolutely no reason" },
       { type: "reveal", text: "and we’re definitely not stopping anytime soon" },
-      { type: "bonus", text: "and I don’t even regret it… tomorrow I’m pointing out something subtle" },
+      { type: "bonus", text: "tomorrow I’m pointing out something subtle you do… and once you notice it, you’ll catch me staring every single time." },
     ],
   },
-
   {
     day: 6,
     emoji: "👀",
@@ -189,10 +174,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "this is something I’ve noticed a lot" },
       { type: "hold", text: "you walk like you don’t care about anything… and somehow that makes people notice you more" },
       { type: "reveal", text: "including me" },
-      { type: "bonus", text: "yeah… that effect… tomorrow I’m saying something important" },
+      { type: "bonus", text: "tomorrow gets important and honest… the kind of note that lingers in your chest long after you close this." },
     ],
   },
-
   {
     day: 5,
     emoji: "🫶",
@@ -201,10 +185,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "okay this one is serious" },
       { type: "hold", text: "you’ve been there for me… in ways you don’t even realise" },
       { type: "reveal", text: "and that actually means a lot to me" },
-      { type: "bonus", text: "probably more than I say… tomorrow hits different" },
+      { type: "bonus", text: "tomorrow I’ll show you the gap between how you see yourself and how breathtaking you actually are to me." },
     ],
   },
-
   {
     day: 4,
     emoji: "🧩",
@@ -213,10 +196,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "this one…" },
       { type: "hold", text: "what you think you are… vs what you actually are" },
       { type: "reveal", text: "the difference is crazy" },
-      { type: "bonus", text: "you’re way better than you think… tomorrow I’m not holding back" },
+      { type: "bonus", text: "tomorrow I’m done being subtle and yes, I’m about to flirt shamelessly with facts and full confidence." },
     ],
   },
-
   {
     day: 3,
     emoji: "👀",
@@ -225,10 +207,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "yeah I’m not being subtle here" },
       { type: "hold", text: "you’re actually insanely attractive" },
       { type: "reveal", text: "like… it’s not even fair sometimes" },
-      { type: "bonus", text: "and no… I’m not taking that back… tomorrow is almost the end" },
+      { type: "bonus", text: "tomorrow is almost the finale… softer, bigger, and sweeter, like the moment before a perfect kiss in a film." },
     ],
   },
-
   {
     day: 2,
     emoji: "⏳",
@@ -237,10 +218,9 @@ export const daysContent: DayContent[] = [
       { type: "tease", text: "almost there…" },
       { type: "hold", text: "you’re not just turning 20… you’re becoming someone people will look up to" },
       { type: "reveal", text: "whether you realise it or not" },
-      { type: "bonus", text: "last one tomorrow… don’t miss it" },
+      { type: "bonus", text: "tomorrow is the final lock before your day… come with a calm heart, because I’ve saved my most honest words for then." },
     ],
   },
-
   {
     day: 1,
     emoji: "🔐",
@@ -248,9 +228,9 @@ export const daysContent: DayContent[] = [
     steps: [
       { type: "tease", text: "tomorrow…" },
       { type: "hold", text: "I’m not holding back… at all" },
+      { type: "bonus", text: "and when midnight opens the final page, I want you smiling… because everything was leading to that moment with you." },
     ],
   },
-
   {
     day: 0,
     emoji: "🎉",
@@ -264,5 +244,4 @@ export const daysContent: DayContent[] = [
       { type: "qr-line", text: "this wasn’t just a countdown… it was me showing you what you don’t see" },
     ],
   },
-
 ];
