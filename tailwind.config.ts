@@ -146,6 +146,8 @@ export default {
         "float": "float 6s ease-in-out infinite",
         "shimmer": "shimmer 3s ease-in-out infinite",
         "particle-float": "particle-float linear infinite",
+        "heartbeat": "heartbeat 2s ease-in-out infinite",
+        "countdown-glow": "countdown-glow 3s ease-in-out infinite",
       },
     },
   },
