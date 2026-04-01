@@ -333,7 +333,7 @@ const DayView = ({ content, onBack, totalDays }: DayViewProps) => {
                 className="px-8 py-3 glass-card rounded-full text-sm text-cream-dim 
                   hover:text-foreground transition-all duration-300"
               >
-                back to days
+                back
               </button>
             </div>
           )}

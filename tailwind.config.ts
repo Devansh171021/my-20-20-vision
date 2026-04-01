@@ -127,6 +127,14 @@ export default {
           "90%": { opacity: "1" },
           "100%": { transform: "translateY(-10vh) translateX(50px)", opacity: "0" },
         },
+        "heartbeat": {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.08)" },
+        },
+        "countdown-glow": {
+          "0%, 100%": { opacity: "1", textShadow: "0 0 40px hsl(40 60% 69% / 0.4)" },
+          "50%": { opacity: "0.85", textShadow: "0 0 80px hsl(40 60% 69% / 0.7)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -138,6 +146,8 @@ export default {
         "float": "float 6s ease-in-out infinite",
         "shimmer": "shimmer 3s ease-in-out infinite",
         "particle-float": "particle-float linear infinite",
+        "heartbeat": "heartbeat 2s ease-in-out infinite",
+        "countdown-glow": "countdown-glow 3s ease-in-out infinite",
       },
     },
   },
