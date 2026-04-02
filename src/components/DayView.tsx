@@ -83,7 +83,7 @@ const StepRenderer = ({ step, onNext }: { step: DayStep; onNext: () => void }) =
         <p
           className={`font-serif leading-relaxed whitespace-pre-line ${
             step.type === "reveal" || step.type === "final-text"
-              ? "text-2xl md:text-3xl text-primary text-glow"
+              ? "text-2xl md:text-3xl shimmer-gold-text"
               : step.type === "bonus"
               ? "text-sm italic text-muted-foreground"
               : "text-lg text-foreground"
