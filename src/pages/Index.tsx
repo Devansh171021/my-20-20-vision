@@ -4,6 +4,7 @@ import TypewriterText from "@/components/TypewriterText";
 import DayView from "@/components/DayView";
 import UnlockScreen from "@/components/UnlockScreen";
 import LoveBackground from "@/components/LoveBackground";
+import DistanceWidget from "@/components/DistanceWidget";
 import { daysContent, DayContent } from "@/data/daysContent";
 import {
   getCurrentDay,
