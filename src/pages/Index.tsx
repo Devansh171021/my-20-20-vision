@@ -276,9 +276,11 @@ const MainExperience = () => {
       <div className="min-h-screen flex items-center justify-center px-8 relative z-10">
         <div className="max-w-md w-full text-center space-y-8">
           <LetterTiles revealedCount={NAME_LETTERS.length} activeIndex={null} />
+          <DistanceWidget />
           <p className="font-serif text-2xl text-primary text-glow">
-            Happy Birthday, Priyodarshini ✦
+            Happy Birthday, Anmona ✦
           </p>
+          <p className="text-xs text-muted-foreground font-sans mt-2">— from D</p>
         </div>
         <DevToggle currentDay={dayStatus} onChangeDay={(d) => { setDevDay(d); setUnlocking(null); setSelectedDay(null); }} />
       </div>
