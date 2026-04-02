@@ -64,6 +64,13 @@ const StepRenderer = ({ step, onNext }: { step: DayStep; onNext: () => void }) =
     }
   }, [holdProgress, onNext]);
 
+  // Haptic vibration on reveal steps
+  useEffect(() => {
+    if (step.type === "reveal" && navigator.vibrate) {
+      navigator.vibrate([50, 30, 50]);
+    }
+  }, [step.type]);
+
   /* ================= TEXT TYPES ================= */
   if (
     step.type === "tease" ||
