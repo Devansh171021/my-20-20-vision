@@ -4,6 +4,7 @@ import TypewriterText from "@/components/TypewriterText";
 import DayView from "@/components/DayView";
 import UnlockScreen from "@/components/UnlockScreen";
 import LoveBackground from "@/components/LoveBackground";
+import DistanceWidget from "@/components/DistanceWidget";
 import { daysContent, DayContent } from "@/data/daysContent";
 import {
   getCurrentDay,
@@ -258,7 +259,8 @@ const MainExperience = () => {
           <p className="text-xs text-cream-dim font-sans tracking-[0.3em] uppercase mb-2">
             20 Days of You
           </p>
-          <LetterTiles revealedCount={0} activeIndex={null} />
+        <LetterTiles revealedCount={0} activeIndex={null} />
+          <DistanceWidget />
           <p className="font-serif text-xl text-cream-dim italic animate-pulse-soft">
             coming soon…
           </p>
@@ -274,9 +276,11 @@ const MainExperience = () => {
       <div className="min-h-screen flex items-center justify-center px-8 relative z-10">
         <div className="max-w-md w-full text-center space-y-8">
           <LetterTiles revealedCount={NAME_LETTERS.length} activeIndex={null} />
+          <DistanceWidget />
           <p className="font-serif text-2xl text-primary text-glow">
-            Happy Birthday, Priyodarshini ✦
+            Happy Birthday, Anmona ✦
           </p>
+          <p className="text-xs text-muted-foreground font-sans mt-2">— from D</p>
         </div>
         <DevToggle currentDay={dayStatus} onChangeDay={(d) => { setDevDay(d); setUnlocking(null); setSelectedDay(null); }} />
       </div>
@@ -295,6 +299,8 @@ const MainExperience = () => {
           revealedCount={revealedCount}
           activeIndex={activeLetterIndex}
         />
+
+        <DistanceWidget />
 
         {showCountdown && <CountdownDisplay dayNumber={dayNumber!} />}
 
