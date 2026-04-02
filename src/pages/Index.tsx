@@ -259,7 +259,8 @@ const MainExperience = () => {
           <p className="text-xs text-cream-dim font-sans tracking-[0.3em] uppercase mb-2">
             20 Days of You
           </p>
-          <LetterTiles revealedCount={0} activeIndex={null} />
+        <LetterTiles revealedCount={0} activeIndex={null} />
+          <DistanceWidget />
           <p className="font-serif text-xl text-cream-dim italic animate-pulse-soft">
             coming soon…
           </p>
