@@ -1,8 +1,12 @@
 export interface DayStep {
-  type: "tease" | "hold" | "reveal" | "bonus" | "voice" | "photo" | "montage" | "split-view" | "final-text" | "qr-line";
+  type: "tease" | "hold" | "reveal" | "bonus" | "voice" | "photo" | "montage" | "split-view" | "final-text" | "qr-line" | "target" | "judge";
   text?: string;
   splitLeft?: string[];
   splitRight?: string[];
+  audioUrl?: string;
+  weatherMode?: "default" | "rain";
+  memory?: string;
+  verdict?: string;
 }
 
 export interface DayContent {
@@ -10,6 +14,7 @@ export interface DayContent {
   emoji: string;
   title: string;
   steps: DayStep[];
+  bgMusic?: string;
 }
 
 export const daysContent: DayContent[] = [
@@ -19,22 +24,22 @@ export const daysContent: DayContent[] = [
     emoji: "🌟",
     title: "The Beginning",
     steps: [
-      { type: "tease", text: "okay… wait" },
-      { type: "hold", text: "don’t overthink this… just stay here for a second… I’m not trying to prove anything… I just want you to see something you always miss" },
+      { type: "tease", text: "okay… before this starts" },
+      { type: "hold", text: "just don't overthink this whole thing for once…\n\nI'm just going to show you something you don't see enough" },
       { type: "reveal", text: "you… through my eyes" },
-      { type: "bonus", text: "and if that felt even a little real… just wait… tomorrow I’m starting properly" },
     ],
   },
 
   {
     day: 19,
-    emoji: "👀",
+    emoji: "📸",
     title: "When You're Not Trying",
     steps: [
-      { type: "tease", text: "this one is simple" },
-      { type: "hold", text: "when you’re not trying… not fixing anything… just being normal… that version of you" },
-      { type: "reveal", text: "that’s when you look your best" },
-      { type: "bonus", text: "and no… don’t argue… I’ve seen it too many times… tomorrow I’m exposing you a little" },
+      { type: "tease", text: "this one is actually very simple" },
+      { type: "hold", text: "you look your best when you're not even trying…\n\nlike genuinely not thinking about how you look" },
+      { type: "reveal", text: "just you… existing" },
+      { type: "photo" },
+      { type: "bonus", text: "and yeah… that version of you is my favourite" },
     ],
   },
 
@@ -43,10 +48,10 @@ export const daysContent: DayContent[] = [
     emoji: "😂",
     title: "Your Savage Side",
     steps: [
-      { type: "tease", text: "okay I might regret this" },
-      { type: "hold", text: "you judge people like it’s your hidden skill… your expressions alone can finish someone" },
-      { type: "reveal", text: "and it’s actually scary sometimes" },
-      { type: "bonus", text: "but yeah… I still enjoy it… way more than I should… tomorrow gets serious" },
+      { type: "tease", text: "okay I'm exposing you a little here" },
+      { type: "hold", text: "you judge people like it's a full-time job…\n\nyour expressions alone can destroy someone" },
+      { type: "reveal", text: "and the worst part is… I still enjoy it" },
+      { type: "bonus", text: "like way more than I should" },
     ],
   },
 
@@ -55,10 +60,10 @@ export const daysContent: DayContent[] = [
     emoji: "🧠",
     title: "Your Overthinking",
     steps: [
-      { type: "tease", text: "this one… I don’t like" },
-      { type: "hold", text: "you overthink things that don’t even exist… and then convince yourself they do" },
-      { type: "reveal", text: "and it just messes with you for no reason" },
-      { type: "bonus", text: "if you saw yourself properly… you wouldn’t doubt like this… tomorrow I’m reminding you who you actually are" },
+      { type: "tease", text: "this one… I wish I could remove from you" },
+      { type: "hold", text: "you overthink things that don't even exist\n\nand then stress about them like they're real" },
+      { type: "reveal", text: "and it's so unnecessary" },
+      { type: "bonus", text: "because if you saw yourself clearly… you wouldn't doubt this much" },
     ],
   },
 
@@ -67,10 +72,10 @@ export const daysContent: DayContent[] = [
     emoji: "💪",
     title: "Your Discipline",
     steps: [
-      { type: "tease", text: "listen to this properly" },
-      { type: "hold", text: "people only see your results… but I’ve seen the days you didn’t feel like doing anything… and still did it" },
-      { type: "reveal", text: "that’s discipline" },
-      { type: "bonus", text: "and yeah… that’s rare… tomorrow I’m saying something you’ll deny" },
+      { type: "tease", text: "people only see your results" },
+      { type: "hold", text: "they don't see the days you didn't feel like doing anything…\n\nand still showed up" },
+      { type: "reveal", text: "that's what actually matters" },
+      { type: "bonus", text: "that consistency… that's what makes you different" },
     ],
   },
 
@@ -79,22 +84,24 @@ export const daysContent: DayContent[] = [
     emoji: "🎯",
     title: "You As a Shooter",
     steps: [
-      { type: "tease", text: "you’re going to argue here" },
-      { type: "hold", text: "you didn’t almost make it… you reached places most people can’t even imagine… and still kept going" },
-      { type: "reveal", text: "that says everything about you" },
-      { type: "bonus", text: "and no… I’m not letting you downplay it… tomorrow I’m talking about something else… and you won’t escape that one" },
+      { type: "tease", text: "you're definitely going to argue with this" },
+      { type: "hold", text: "you didn't almost make it…\n\nyou're someone who just refuses to stop trying" },
+      { type: "target" },
+      { type: "voice", audioUrl: "/audio/day15-shooter.mp3" },
+      { type: "bonus", text: "and honestly… that's way more impressive than winning" },
     ],
+    bgMusic: "/audio/bg-day15.mp3",
   },
 
   {
     day: 14,
-    emoji: "👀",
-    title: "The Way You Look",
+    emoji: "🌧️",
+    title: "The Scooter Ride",
     steps: [
-      { type: "tease", text: "okay don’t react immediately" },
-      { type: "hold", text: "you think you look good sometimes… but you don’t realise how often it actually happens" },
-      { type: "reveal", text: "it’s way more than you think" },
-      { type: "bonus", text: "and yeah… I notice every time… tomorrow gets softer" },
+      { type: "tease", text: "okay this one" },
+      { type: "hold", text: "don't roll your eyes…\n\nyou're not sometimes pretty", weatherMode: "rain" },
+      { type: "reveal", text: "you just don't notice when you are" },
+      { type: "bonus", text: "which is… most of the time" },
     ],
   },
 
@@ -103,22 +110,24 @@ export const daysContent: DayContent[] = [
     emoji: "🌧️",
     title: "Your Soft Side",
     steps: [
-      { type: "tease", text: "this side of you…" },
-      { type: "hold", text: "you don’t show it to everyone… but you feel things deeply… more than you admit" },
-      { type: "reveal", text: "and that softness… it suits you" },
-      { type: "bonus", text: "don’t hide it too much… tomorrow I’m going back to chaos" },
+      { type: "tease", text: "this version of you" },
+      { type: "hold", text: "you don't show it to everyone…\n\nbut you feel things deeply" },
+      { type: "reveal", text: "way more than you admit" },
+      { type: "photo" },
+      { type: "bonus", text: "and that softness… it suits you" },
     ],
   },
 
   {
     day: 12,
-    emoji: "😂",
-    title: "The Annoying You",
+    emoji: "⚖️",
+    title: "Judging People",
     steps: [
-      { type: "tease", text: "okay I’m saying this openly" },
-      { type: "hold", text: "you are annoying sometimes… like properly irritating" },
-      { type: "reveal", text: "but still… I wouldn’t replace you" },
-      { type: "bonus", text: "so clearly you’re doing something right… tomorrow is different" },
+      { type: "tease", text: "okay I'm saying this openly" },
+      { type: "hold", text: "you're actually irritating sometimes…\n\nlike properly annoying" },
+      { type: "judge", memory: "that time we roasted someone for 20 minutes straight", verdict: "guilty… and proud of it" },
+      { type: "reveal", text: "but still… I wouldn't replace you" },
+      { type: "bonus", text: "so clearly you're doing something right" },
     ],
   },
 
@@ -128,9 +137,9 @@ export const daysContent: DayContent[] = [
     title: "Your Heart",
     steps: [
       { type: "tease", text: "this one matters" },
-      { type: "hold", text: "you care more than you show… you notice things even when you act like you don’t" },
+      { type: "hold", text: "you care more than you show…\n\nyou notice things even when you act like you don't" },
       { type: "reveal", text: "that kind of heart is rare" },
-      { type: "bonus", text: "don’t lose that… seriously… tomorrow I’m talking about something you don’t even realise" },
+      { type: "bonus", text: "don't change that" },
     ],
   },
 
@@ -140,9 +149,11 @@ export const daysContent: DayContent[] = [
     title: "The Version You Hide",
     steps: [
       { type: "tease", text: "okay now this one" },
-      { type: "hold", text: "there’s a version of you… calm… confident… and a little dangerous" },
+      { type: "hold", text: "there's a version of you…\n\ncalm, confident, and lowkey dangerous" },
       { type: "reveal", text: "and yeah… I notice that version a lot" },
-      { type: "bonus", text: "probably more than you think… tomorrow gets personal" },
+      { type: "photo" },
+      { type: "voice", audioUrl: "/audio/day10-voice.mp3" },
+      { type: "bonus", text: "probably more than you think" },
     ],
   },
 
@@ -152,8 +163,8 @@ export const daysContent: DayContent[] = [
     title: "Just Listen",
     steps: [
       { type: "tease", text: "halfway…" },
-      { type: "voice" },
-      { type: "bonus", text: "you still don’t believe me do you… tomorrow I’ll explain why" },
+      { type: "voice", audioUrl: "/audio/day9-voice.mp3" },
+      { type: "bonus", text: "you still don't believe me do you" },
     ],
   },
 
@@ -162,10 +173,10 @@ export const daysContent: DayContent[] = [
     emoji: "🧠",
     title: "Your Mind",
     steps: [
-      { type: "tease", text: "this explains you" },
-      { type: "hold", text: "you’re not confused… you just think deeper than most people around you" },
+      { type: "tease", text: "this one explains you perfectly" },
+      { type: "hold", text: "you're not confused…\n\nyou just think deeper than most people" },
       { type: "reveal", text: "and yeah… it makes things messy sometimes" },
-      { type: "bonus", text: "but that’s also what makes you different… tomorrow is chaos" },
+      { type: "bonus", text: "but it's also what makes you different" },
     ],
   },
 
@@ -174,10 +185,10 @@ export const daysContent: DayContent[] = [
     emoji: "😂",
     title: "Our Chaos",
     steps: [
-      { type: "tease", text: "we should be banned" },
-      { type: "hold", text: "we’ve judged way too many people for no reason" },
-      { type: "reveal", text: "and we’re not stopping anytime soon" },
-      { type: "bonus", text: "and honestly… I don’t regret it… tomorrow I’m pointing something out" },
+      { type: "tease", text: "we should actually be banned" },
+      { type: "hold", text: "we've judged way too many people\n\nfor absolutely no reason" },
+      { type: "reveal", text: "and we're probably not stopping anytime soon" },
+      { type: "bonus", text: "and honestly… I don't even regret it" },
     ],
   },
 
@@ -186,10 +197,10 @@ export const daysContent: DayContent[] = [
     emoji: "👀",
     title: "The Way You Carry Yourself",
     steps: [
-      { type: "tease", text: "this is subtle" },
-      { type: "hold", text: "you walk like you don’t care about anything… and somehow that makes people notice you more" },
-      { type: "reveal", text: "including me" },
-      { type: "bonus", text: "yeah… that effect… tomorrow gets important" },
+      { type: "tease", text: "this is something I've noticed a lot" },
+      { type: "hold", text: "you walk like you don't care about anything" },
+      { type: "reveal", text: "and somehow that makes people notice you more" },
+      { type: "bonus", text: "including me" },
     ],
   },
 
@@ -198,10 +209,12 @@ export const daysContent: DayContent[] = [
     emoji: "🫶",
     title: "What You Mean To Me",
     steps: [
-      { type: "tease", text: "okay serious one" },
-      { type: "hold", text: "you’ve been there for me… in ways you don’t even realise" },
-      { type: "reveal", text: "and that actually means a lot to me" },
-      { type: "bonus", text: "probably more than I say… tomorrow hits different" },
+      { type: "tease", text: "okay this one is serious" },
+      { type: "hold", text: "you've been there for me…\n\nin ways you don't even realise" },
+      { type: "reveal", text: "and I don't say this enough" },
+      { type: "photo" },
+      { type: "voice", audioUrl: "/audio/day5-voice.mp3" },
+      { type: "bonus", text: "but yeah… that means a lot to me" },
     ],
   },
 
@@ -210,10 +223,10 @@ export const daysContent: DayContent[] = [
     emoji: "🧩",
     title: "You vs Your Thoughts",
     steps: [
-      { type: "tease", text: "this one…" },
-      { type: "hold", text: "what you think you are… vs what you actually are" },
+      { type: "tease", text: "this one hits different" },
+      { type: "hold", text: "what you think you are\n\nvs what you actually are" },
       { type: "reveal", text: "the difference is crazy" },
-      { type: "bonus", text: "you’re way better than you think… tomorrow I’m not holding back" },
+      { type: "bonus", text: "you're way better than you think" },
     ],
   },
 
@@ -222,10 +235,11 @@ export const daysContent: DayContent[] = [
     emoji: "👀",
     title: "The Attractive You",
     steps: [
-      { type: "tease", text: "yeah I’m not being subtle" },
-      { type: "hold", text: "you’re actually insanely attractive" },
-      { type: "reveal", text: "like… it’s not even fair sometimes" },
-      { type: "bonus", text: "and no… I’m not taking that back… tomorrow is almost the end" },
+      { type: "tease", text: "yeah I'm not even pretending to be subtle" },
+      { type: "hold", text: "you're actually insanely attractive" },
+      { type: "reveal", text: "like… it's not even fair sometimes" },
+      { type: "photo" },
+      { type: "bonus", text: "and no… I'm not taking that back" },
     ],
   },
 
@@ -235,9 +249,9 @@ export const daysContent: DayContent[] = [
     title: "Almost 20",
     steps: [
       { type: "tease", text: "almost there…" },
-      { type: "hold", text: "you’re not just turning 20… you’re becoming someone people will look up to" },
-      { type: "reveal", text: "whether you realise it or not" },
-      { type: "bonus", text: "last one tomorrow… don’t miss it" },
+      { type: "hold", text: "you're not just turning 20" },
+      { type: "reveal", text: "you're becoming someone people will look up to" },
+      { type: "bonus", text: "whether you realise it or not" },
     ],
   },
 
@@ -247,8 +261,7 @@ export const daysContent: DayContent[] = [
     title: "Tomorrow",
     steps: [
       { type: "tease", text: "tomorrow…" },
-      { type: "hold", text: "I’m not holding back… at all" },
-      { type: "bonus", text: "and yeah… just come with a calm mind… I mean it" },
+      { type: "hold", text: "I'm not holding back" },
     ],
   },
 
@@ -259,11 +272,12 @@ export const daysContent: DayContent[] = [
     steps: [
       { type: "tease", text: "20 days…" },
       { type: "montage" },
-      { type: "voice" },
-      { type: "final-text", text: "you don’t see yourself clearly… but I do" },
-      { type: "reveal", text: "and yeah… that’s exactly why you mean so much to me" },
-      { type: "qr-line", text: "this wasn’t just a countdown… it was me showing you what you don’t see" },
+      { type: "voice", audioUrl: "/audio/day0-voice.mp3" },
+      { type: "final-text", text: "you don't see yourself clearly… but I do" },
+      { type: "reveal", text: "and yeah… that's exactly why you mean so much to me" },
+      { type: "qr-line", text: "this wasn't just a countdown…\n\nit was me showing you what you don't see" },
     ],
+    bgMusic: "/audio/bg-finale.mp3",
   },
 
 ];
