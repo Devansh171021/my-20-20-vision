@@ -300,6 +300,8 @@ const MainExperience = () => {
           activeIndex={activeLetterIndex}
         />
 
+        <DistanceWidget />
+
         {showCountdown && <CountdownDisplay dayNumber={dayNumber!} />}
 
         {todayContent && (
